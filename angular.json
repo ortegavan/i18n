@@ -59,6 +59,12 @@
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true
+                        },
+                        "pt": {
+                            "localize": ["pt"]
+                        },
+                        "en": {
+                            "localize": ["en-US"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -71,6 +77,12 @@
                         },
                         "development": {
                             "buildTarget": "i18n:build:development"
+                        },
+                        "pt": {
+                            "buildTarget": "i18n:build:pt"
+                        },
+                        "en": {
+                            "buildTarget": "i18n:build:en"
                         }
                     },
                     "defaultConfiguration": "development"
