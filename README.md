@@ -41,7 +41,6 @@ cp src/locale/messages.en.xlf src/locale/messages.pt.xlf
                 "pt": "src/locale/messages.pt.xlf"
             }
         },
-        ...
     }
 }
 ```
@@ -64,8 +63,4 @@ e
 ng build --localize
 ```
 
-8. Execute o projeto com o idioma desejado (altere o "localize" no arquivo angular.json para o idioma desejado, deixe true para o idioma padrão):
-
-```bash
-ng serve --configuration=pt-BR
-```
+8. Execute o projeto com o idioma desejado via `ng serve` (altere o "localize" no arquivo angular.json para o idioma desejado, deixe true para o idioma padrão).
