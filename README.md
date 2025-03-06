@@ -1,59 +1,71 @@
 # I18n
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Esta é uma prova de conceito para internacionalização de aplicações em Angular.
 
-## Development server
-
-To start a local development server, run:
+1. Adicione o módulo de internacionalização ao seu projeto:
 
 ```bash
-ng serve
+ng add @angular/localize
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Se o pacote não for adicionado, ocorrerá um erro ao tentar usar o atributo `i18n` em um template.
 
-## Code scaffolding
+2. Adicione o atributo `i18n` ao(s) elemento(s) que deseja internacionalizar:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```html
+<h1 i18n>Hello i18n!</h1>
+```
+
+3. Extraia o arquivo de tradução:
 
 ```bash
-ng generate component component-name
+ng extract-i18n --output-path src/locale --out-file messages.en.xlf
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+4. Copie o arquivo extraído e, com base nele, crie outro arquivo, um para cada idioma. Por exemplo, `messages.pt.xlf`:
 
 ```bash
-ng generate --help
+cp src/locale/messages.en.xlf src/locale/messages.pt.xlf
 ```
 
-## Building
+5. Traduza o conteúdo de cada novo arquivo para o idioma desejado. Existem ferramentas como https://poeditor.com que podem ajudar nessa etapa.
 
-To build the project run:
+6. Configure o angular.json para trabalhar com os arquivos de tradução:
+
+```json
+"projects": {
+    "i18n": {
+        "i18n": {
+            "sourceLocale": "en-US",
+            "locales": {
+                "pt": "src/locale/messages.pt.xlf"
+            }
+        },
+        ...
+    }
+}
+```
+
+e
+
+```json
+"architect": {
+    "build": {
+        "options": {
+            "localize": true,
+        }
+    }
+}
+```
+
+7. Compile o projeto para que os arquivos de tradução sejam incluídos no build:
 
 ```bash
-ng build
+ng build --localize
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+8. Execute o projeto com o idioma desejado (altere o "localize" no arquivo angular.json para o idioma desejado, deixe true para o idioma padrão):
 
 ```bash
-ng test
+ng serve --configuration=pt-BR
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
